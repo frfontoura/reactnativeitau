@@ -54,7 +54,6 @@ const MenuRoutes = {
 const MenuConfig = {
   initialRouteName: 'Main',
   tabBarOptions: {
-    showLabel: true,
     activeBackgroundColor: '#fff',
     inactiveBackgroundColor: '#ff7300',
     activeTintColor: '#ff7300',
