@@ -1,6 +1,17 @@
 import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 
-import { Text, View, StyleSheet } from 'react-native';
+import Card from '~/components/Card';
+
+const Main = () => (
+  <View style={styles.container}>
+    <Card text="saldo em conta corrente">
+      <Text>ver extrato</Text>
+    </Card>
+  </View>
+);
+
+export default Main;
 
 const styles = StyleSheet.create({
   container: {
@@ -9,11 +20,3 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
-const Main = () => (
-  <View style={styles.container}>
-    <Text>Inicio</Text>
-  </View>
-);
-
-export default Main;
