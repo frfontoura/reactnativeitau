@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, TouchableOpacity,
 } from 'react-native';
 
-export default function Card({ text, children }) {
+export default function Card({ text, children, actions }) {
   const [showChildren, setShowChildren] = useState(false);
 
   return (
@@ -14,7 +14,14 @@ export default function Card({ text, children }) {
           <Text>expandir</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.action}>ver extrato</Text>
+
+      <View style={styles.actions}>
+        {actions && actions.map(a => (
+          <TouchableOpacity key={a.text} onPress={a.onPress}>
+            <Text style={styles.action}>{a.text}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
       {showChildren ? <View>{children}</View> : null}
     </View>
@@ -33,6 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: 20,
+  },
+  actions: {
+    flexDirection: 'row',
   },
   text: {
     flex: 1,

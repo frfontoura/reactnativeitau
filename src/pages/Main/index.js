@@ -3,10 +3,13 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import Card from '~/components/Card';
 
-const Main = () => (
+const Main = props => (
   <View style={styles.container}>
-    <Card text="saldo em conta corrente">
-      <Text>ver extrato</Text>
+    <Card
+      text="saldo em conta corrente"
+      actions={[{ text: 'ver extrato', onPress: () => props.navigation.navigate('Extrato') }]}
+    >
+      <Text>Detalhes</Text>
     </Card>
   </View>
 );
