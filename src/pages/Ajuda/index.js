@@ -1,14 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ddd',
-    padding: 10,
-  },
-});
-
 export default function Ajuda() {
   return (
     <View style={styles.container}>
@@ -16,3 +8,11 @@ export default function Ajuda() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ddd',
+    padding: 10,
+  },
+});
