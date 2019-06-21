@@ -11,7 +11,7 @@ export default function Card({ text, children, actions }) {
       <View style={styles.content}>
         <Text style={styles.text}>{text}</Text>
         <TouchableOpacity onPress={() => setShowChildren(!showChildren)}>
-          <Text>expandir</Text>
+          <Text>{showChildren ? 'ocultar' : 'expandir'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -23,7 +23,7 @@ export default function Card({ text, children, actions }) {
         ))}
       </View>
 
-      {showChildren ? <View>{children}</View> : null}
+      {showChildren ? <View style={styles.children}>{children}</View> : null}
     </View>
   );
 }
@@ -43,6 +43,11 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
+  },
+  children: {
+    borderTopWidth: 0.5,
+    borderTopColor: '#ddd',
+    paddingTop: 10,
   },
   text: {
     flex: 1,
