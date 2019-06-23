@@ -33,6 +33,13 @@ const Main = props => (
       </ScrollView>
     </View>
 
+    <Card
+      text="crédito"
+      actions={[{ text: 'ver mais', onPress: () => Alert.alert('Mensagem', 'Mais detalhes sobre o crédito') }]}
+    >
+      <Text>Crédito...</Text>
+    </Card>
+
   </View>
 );
 
