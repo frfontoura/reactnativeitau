@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 
 import Card from '~/components/Card';
+import CreditCard from '~/components/CreditCard';
 import Info from '~/components/Info';
 import Shortcut from '~/components/ShortcutCard';
 
@@ -33,6 +34,15 @@ const Main = props => (
           <Shortcut text="personalizar" icon="plus" onPress={() => Alert.alert('Mensagem', 'Personalizar')} />
         </ScrollView>
       </View>
+
+      <CreditCard
+        text="Itaucard Multiplo 2.0 Mast..."
+        final="1234"
+        type="cc-mastercard"
+        actions={[{ text: 'ver detalhes', onPress: () => Alert.alert('Mensagem', 'Mais detalhes sobre o cartão de crédito') }]}
+      >
+        <Text>Pagar...</Text>
+      </CreditCard>
 
       <Card
         text="crédito"
