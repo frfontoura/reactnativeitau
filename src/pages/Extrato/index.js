@@ -1,8 +1,53 @@
 import React, { useState } from 'react';
+import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import {
   View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
+const MenuRoutes = {
+  Tudo: {
+    name: 'Tudo',
+    screen: () => <View><Text>Tudo</Text></View>,
+    navigationOptions: {
+      title: 'tudo',
+    },
+  },
+  Entrada: {
+    name: 'entrada',
+    screen: () => <View><Text>entrada</Text></View>,
+    navigationOptions: {
+      title: 'entrada',
+    },
+  },
+  Saida: {
+    name: 'saida',
+    screen: () => <View><Text>saida</Text></View>,
+    navigationOptions: {
+      title: 'saída',
+    },
+  },
+  Futuro: {
+    name: 'futuro',
+    screen: () => <View><Text>futuro</Text></View>,
+    navigationOptions: {
+      title: 'futuro',
+    },
+  },
+};
+
+const MenuConfig = {
+  initialRouteName: 'Tudo',
+  tabBarOptions: {
+    activeTintColor: '#ff7300',
+    inactiveTintColor: '#555',
+    style: {
+      backgroundColor: '#fff',
+    },
+  },
+};
+
+const Routes = createAppContainer(createMaterialTopTabNavigator(MenuRoutes, MenuConfig));
 
 export default function Extrato() {
   const [showDetail, setShowDetail] = useState(false);
@@ -24,6 +69,8 @@ export default function Extrato() {
         <Text>Detalhes...</Text>
       </View>
       )}
+
+      <Routes />
 
     </View>
   );
