@@ -44,6 +44,9 @@ const MenuConfig = {
     style: {
       backgroundColor: '#fff',
     },
+    indicatorStyle: {
+      backgroundColor: '#ff7300',
+    },
   },
 };
 
