@@ -52,7 +52,7 @@ const MenuRoutes = {
 };
 
 const MenuConfig = {
-  initialRouteName: 'Main',
+  initialRouteName: 'Extrato',
   tabBarOptions: {
     activeBackgroundColor: '#fff',
     inactiveBackgroundColor: '#ff7300',

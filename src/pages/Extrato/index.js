@@ -5,55 +5,57 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const MenuRoutes = {
-  Tudo: {
-    name: 'Tudo',
-    screen: () => <View><Text>Tudo</Text></View>,
-    navigationOptions: {
-      title: 'tudo',
-    },
-  },
-  Entrada: {
-    name: 'entrada',
-    screen: () => <View><Text>entrada</Text></View>,
-    navigationOptions: {
-      title: 'entrada',
-    },
-  },
-  Saida: {
-    name: 'saida',
-    screen: () => <View><Text>saida</Text></View>,
-    navigationOptions: {
-      title: 'saída',
-    },
-  },
-  Futuro: {
-    name: 'futuro',
-    screen: () => <View><Text>futuro</Text></View>,
-    navigationOptions: {
-      title: 'futuro',
-    },
-  },
-};
-
-const MenuConfig = {
-  initialRouteName: 'Tudo',
-  tabBarOptions: {
-    activeTintColor: '#ff7300',
-    inactiveTintColor: '#555',
-    style: {
-      backgroundColor: '#fff',
-    },
-    indicatorStyle: {
-      backgroundColor: '#ff7300',
-    },
-  },
-};
-
-const Routes = createAppContainer(createMaterialTopTabNavigator(MenuRoutes, MenuConfig));
+import Timeline from '~/components/Timeline';
 
 export default function Extrato() {
   const [showDetail, setShowDetail] = useState(false);
+
+  const MenuRoutes = {
+    Tudo: {
+      name: 'Tudo',
+      screen: () => <Timeline />,
+      navigationOptions: {
+        title: 'tudo',
+      },
+    },
+    Entrada: {
+      name: 'entrada',
+      screen: () => <Timeline />,
+      navigationOptions: {
+        title: 'entrada',
+      },
+    },
+    Saida: {
+      name: 'saida',
+      screen: () => <Timeline />,
+      navigationOptions: {
+        title: 'saída',
+      },
+    },
+    Futuro: {
+      name: 'futuro',
+      screen: () => <Timeline />,
+      navigationOptions: {
+        title: 'futuro',
+      },
+    },
+  };
+
+  const MenuConfig = {
+    initialRouteName: 'Tudo',
+    tabBarOptions: {
+      activeTintColor: '#ff7300',
+      inactiveTintColor: '#555',
+      style: {
+        backgroundColor: '#fff',
+      },
+      indicatorStyle: {
+        backgroundColor: '#ff7300',
+      },
+    },
+  };
+
+  const Routes = createAppContainer(createMaterialTopTabNavigator(MenuRoutes, MenuConfig));
 
   return (
     <View style={styles.container}>
