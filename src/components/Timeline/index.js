@@ -3,10 +3,25 @@ import {
   View, Text, FlatList, StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { format, isAfter, addDays } from 'date-fns';
+import locale from 'date-fns/locale/pt';
 
 const data = [
   {
-    date: '10/10/2010',
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: addDays(new Date(), 1),
+    values: [
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'ENTRADA',
+        value: 123.11,
+        text: 'futuro',
+      },
+    ],
+  },
+  {
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 28),
     values: [
       {
         id: Math.floor(Math.random() * (1000 - 1)) + 1,
@@ -29,7 +44,8 @@ const data = [
     ],
   },
   {
-    date: '09/10/2010',
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 27),
     values: [
       {
         id: Math.floor(Math.random() * (1000 - 1)) + 1,
@@ -52,7 +68,8 @@ const data = [
     ],
   },
   {
-    date: '08/10/2010',
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 26),
     values: [
       {
         id: Math.floor(Math.random() * (1000 - 1)) + 1,
@@ -81,11 +98,11 @@ export default function Timeline() {
     <View style={styles.container}>
       <FlatList
         data={data}
-        keyExtractor={item => `${item.date}`}
+        keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
+          <View style={[styles.itemContainer, isAfter(item.date, new Date()) ? { backgroundColor: 'transparent' } : {}]}>
             <View style={styles.dateContainer}>
-              <Text style={styles.dateText}>{item.date}</Text>
+              <Text style={styles.dateText}>{format(item.date, 'DD [de] MMMM', { locale })}</Text>
             </View>
             {item.values.map(v => (
               <View key={v.id} style={styles.transactionContainer}>
@@ -114,6 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   dateText: {
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 15,
