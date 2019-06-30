@@ -4,37 +4,137 @@ import {
   View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { addDays, isAfter } from 'date-fns';
 
 import Timeline from '~/components/Timeline';
+
+const data = [
+  {
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: addDays(new Date(), 1),
+    values: [
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'ENTRADA',
+        value: 123.11,
+        text: 'futuro',
+      },
+    ],
+  },
+  {
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 28),
+    values: [
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'ENTRADA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+    ],
+  },
+  {
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 27),
+    values: [
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'ENTRADA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+    ],
+  },
+  {
+    id: Math.floor(Math.random() * (1000 - 1)) + 1,
+    date: new Date(2019, 5, 26),
+    values: [
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'ENTRADA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+      {
+        id: Math.floor(Math.random() * (1000 - 1)) + 1,
+        type: 'SAIDA',
+        value: 123.11,
+        text: 'bla bla bla',
+      },
+    ],
+  },
+];
 
 export default function Extrato() {
   const [showDetail, setShowDetail] = useState(false);
 
+  function filterByType(type) {
+    return data.map(d => ({
+      ...d, values: d.values.filter(v => v.type === type),
+    }));
+  }
+
+  function filterFuture() {
+    return data.filter(d => isAfter(d.date, new Date()));
+  }
+
   const MenuRoutes = {
     Tudo: {
       name: 'Tudo',
-      screen: () => <Timeline />,
+      screen: () => <Timeline data={data} />,
       navigationOptions: {
         title: 'tudo',
       },
     },
     Entrada: {
       name: 'entrada',
-      screen: () => <Timeline />,
+      screen: () => (
+        <Timeline data={filterByType('ENTRADA')} />
+      ),
       navigationOptions: {
         title: 'entrada',
       },
     },
     Saida: {
       name: 'saida',
-      screen: () => <Timeline />,
+      screen: () => <Timeline data={filterByType('SAIDA')} />,
       navigationOptions: {
         title: 'saída',
       },
     },
     Futuro: {
       name: 'futuro',
-      screen: () => <Timeline />,
+      screen: () => <Timeline data={filterFuture()} future />,
       navigationOptions: {
         title: 'futuro',
       },

@@ -3,111 +3,24 @@ import {
   View, Text, FlatList, StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { format, isAfter, addDays } from 'date-fns';
+import { format, isAfter } from 'date-fns';
 import locale from 'date-fns/locale/pt';
 
-const data = [
-  {
-    id: Math.floor(Math.random() * (1000 - 1)) + 1,
-    date: addDays(new Date(), 1),
-    values: [
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'ENTRADA',
-        value: 123.11,
-        text: 'futuro',
-      },
-    ],
-  },
-  {
-    id: Math.floor(Math.random() * (1000 - 1)) + 1,
-    date: new Date(2019, 5, 28),
-    values: [
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'ENTRADA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-    ],
-  },
-  {
-    id: Math.floor(Math.random() * (1000 - 1)) + 1,
-    date: new Date(2019, 5, 27),
-    values: [
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'ENTRADA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-    ],
-  },
-  {
-    id: Math.floor(Math.random() * (1000 - 1)) + 1,
-    date: new Date(2019, 5, 26),
-    values: [
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'ENTRADA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-      {
-        id: Math.floor(Math.random() * (1000 - 1)) + 1,
-        type: 'SAIDA',
-        value: 123.11,
-        text: 'bla bla bla',
-      },
-    ],
-  },
-];
-
-export default function Timeline() {
+export default function Timeline({ data, future }) {
   return (
     <View style={styles.container}>
       <FlatList
         data={data}
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => (
-          <View style={[styles.itemContainer, isAfter(item.date, new Date()) ? { backgroundColor: 'transparent' } : {}]}>
+          <View style={[styles.itemContainer, isAfter(item.date, new Date()) && !future ? styles.futureContainer : {}]}>
             <View style={styles.dateContainer}>
               <Text style={styles.dateText}>{format(item.date, 'DD [de] MMMM', { locale })}</Text>
             </View>
             {item.values.map(v => (
               <View key={v.id} style={styles.transactionContainer}>
                 <Icon name={v.type === 'ENTRADA' ? 'dollar-sign' : 'receipt'} size={18} color="#ff7300" />
-                <Text>{v.text}</Text>
+                <Text style={styles.valueText}>{v.text}</Text>
                 <Text style={v.type === 'ENTRADA' ? styles.incomingText : null}>{v.type === 'SAIDA' ? '-' : ''}R$ {v.value}</Text>
               </View>
             ))}
@@ -146,5 +59,12 @@ const styles = StyleSheet.create({
   },
   incomingText: {
     color: '#080',
+  },
+  valueText: {
+    flex: 1,
+    marginLeft: 30,
+  },
+  futureContainer: {
+    backgroundColor: 'transparent',
   },
 });
