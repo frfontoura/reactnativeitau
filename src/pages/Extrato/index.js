@@ -101,7 +101,7 @@ export default function Extrato() {
   function filterByType(type) {
     return data.map(d => ({
       ...d, values: d.values.filter(v => v.type === type),
-    }));
+    })).filter(d => d.values.length > 0);
   }
 
   function filterFuture() {
