@@ -52,7 +52,7 @@ const MenuRoutes = {
 };
 
 const MenuConfig = {
-  initialRouteName: 'Transacoes',
+  initialRouteName: 'Servicos',
   tabBarOptions: {
     activeBackgroundColor: '#fff',
     inactiveBackgroundColor: '#ff7300',
