@@ -5,6 +5,7 @@ import {
 
 import Info from '~/components/Info';
 import IconCard from '~/components/IconCard';
+import Banner from '~/components/Banner';
 
 export default function Servicos() {
   return (
@@ -31,6 +32,8 @@ export default function Servicos() {
           <IconCard text="segurança" icon="lock" onPress={() => Alert.alert('Mensagem', 'segurança')} />
           <IconCard text="atendimento" icon="comment-dots" onPress={() => Alert.alert('Mensagem', 'atendimento')} />
         </View>
+
+        <Banner image={require('~/assets/images/banner.png')} linkText="saiba mais" onPress={() => Alert.alert('Mensagem', 'mobilidade urbana...')} />
       </ScrollView>
     </View>
   );
